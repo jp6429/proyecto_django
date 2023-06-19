@@ -39,6 +39,7 @@ main{
     border-radius: 1.5rem;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .darkModeSwitch span{
@@ -86,7 +87,7 @@ body.dark{
 
 nav{
     background-color: var(--tyffany-blue);
-    text-align: center;
+    
 }
 
 .dark nav{
@@ -170,6 +171,120 @@ footer{
     color: var(--light-color);
 }
 
+.footer-heading{
+    color: var(--light-color);
+    text-align: center;
+}
+
+.card-body-footer{
+    background-color: #000;
+}
+
+.footer-right-part{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-content: center;
+    background-color: #000;
+}
+
+.footer-bottom{
+    align-content: center;
+    justify-content: center;
+}
+
 a:hover{
     color: var(--auburn)
+}
+
+.relojFecha-tipo {
+    background-color: var(--vanilla);
+    padding:10px;
+    max-width:300px;
+    width:100%;
+    text-align:center;
+    border-radius:10px;
+    margin:0 auto;
+    margin-top:5%;
+    border: solid;
+    border-color: var(--alloy-orange);
+}
+#reloj{
+    background-color:var(--vanilla);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:30px;
+    text-shadow:0px 0px 1px #fff;
+    color: var(--rich-black);
+}
+#reloj span {
+    color:#888;
+    text-shadow:0px 0px 1px #333;
+    font-size:15px;
+    position:relative;
+    top:-17px;
+    left:-5px;
+}
+#fecha {
+    letter-spacing:10px;
+    font-size:15px;
+    font-family:Arial, Helvetica, sans-serif;
+    color: var(--rich-black);
+}
+
+.dark .relojFecha-tipo{
+    background-color: var(--dark-blue);
+}
+
+.dark #reloj{
+    background-color: var(--dark-blue);
+    color: var(--light-color);
+}
+
+.dark #fecha{
+    color: var(--light-color);
+}
+
+.climaTemp{
+    background-color: var(--vanilla);
+    padding:10px;
+    max-width:300px;
+    width:100%;
+    text-align:center;
+    border-radius:10px;
+    margin:0 auto;
+    margin-top:5%;
+    border: solid;
+    border-color: var(--alloy-orange);
+}
+
+.climaTemp p{
+    font-size: 30px;
+}
+
+.dark .climaTemp{
+    background-color: var(--dark-blue);
+}
+
+#map{
+    height: 500px;
+    width: 75%;
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+.tituloNosotros{
+    text-align: center;
+}
+
+.new-nav-link-bottom{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background: none;
+    border: 0;
 }
