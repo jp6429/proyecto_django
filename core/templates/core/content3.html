@@ -3,3 +3,45 @@
 {% block title %}Contenido 3{% endblock %}
 
 {% load static %}
+
+{% block header %}
+<h1 class="text-center">Soy el contenido numero 3</h1>
+    <div class="row">
+      <div class="col md-2">
+          <div id="relojFecha">
+            <div class="relojFecha-tipo">
+                <div id="reloj"></div>
+                <div id="fecha"></div>
+            </div>
+          </div>
+      </div>
+      <div class="col md-2">
+          <div class="climaTemp">
+            <h2>Temperatura:</h2>
+            <p id="temperatura"></p>
+          </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block first_content %}
+    <section class="section">
+        <article class="article">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quas aperiam</h3>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aut placeat neque? Praesentium, labore. Nisi nihil impedit animi esse perspiciatis?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, quis, commodi non ratione cumque doloribus ipsam eos voluptates exercitationem perspiciatis consequuntur amet odit accusamus porro, obcaecati sapiente sint magnam veritatis error unde numquam aspernatur labore ipsum. Beatae cupiditate porro illum, eveniet quasi esse voluptatum maiores.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro tempore dolor, optio repudiandae voluptatem nemo nisi <u> voluptas officia quisquam, fuga quis ducimus incidunt libero, accusantium fugiat reprehenderit laudantium dignissimos </u>ipsa nobis. Amet at iste numquam, quidem distinctio ipsum est. Molestiae officia fuga odio ratione officiis nemo et dolorum consequatur voluptatibus doloribus quisquam modi, exercitationem debitis, eos itaque nulla earum ut obcaecati tenetur voluptate corrupti adipisci iusto! Suscipit quasi, impedit nobis tempora tempore et nihil! Sequi, assumenda. Dolore consequuntur nihil eius deserunt odio labore obcaecati nulla?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum facilis iste dolor odio quidem labore nisi tenetur vel velit,<i> voluptatem, voluptate eum, dolore id beatae at placeat ab nihil </i>accusamus blanditiis. Sit quia ipsa impedit hic excepturi, quidem laborum aliquid facere unde quibusdam itaque et qui nihil neque eligendi repudiandae nesciunt cupiditate ipsam voluptatum sapiente. Non quibusdam temporibus impedit dolore praesentium voluptates optio repellat unde aliquam est hic repellendus inventore, facere reprehenderit molestiae nemo cum quia cumque? In dolores consequuntur iste? Autem nulla itaque cupiditate dicta accusantium, odit nobis facere iusto repellat dignissimos doloremque quaerat placeat similique magni tenetur consequatur. Repellendus delectus fuga saepe nostrum facilis aliquid nam vel, molestias earum ratione mollitia recusandae ullam cupiditate labore? Rem, perferendis dolores? Repellat ratione nulla ipsam!</p>
+            <img src="{% static 'core/img/puppy001.jpg' %}" alt="perro_fallo">
+            <br>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa nobis nulla eligendi, possimus inventore velit cum sed adipisci alias ipsum amet nostrum quasi eveniet voluptas, natus sit sint quo libero tempore veritatis delectus aspernatur reiciendis. Repudiandae cum architecto, ullam porro vero nemo consectetur assumenda repellat doloribus rerum id, quis nam eligendi numquam mollitia, soluta deleniti! Obcaecati quia pariatur, provident amet ullam quisquam possimus porro nihil quasi nisi quidem sit error vel maxime dolor temporibus iste illum consequatur enim sapiente, laudantium omnis perferendis nobis. Dolore, pariatur! Quo, sapiente.</p>
+        </article>
+    </section>
+{% endblock %}
+
+{% block modo_oscuro %}<script src="{% static 'core/js/modo_oscuro.js' %}"></script>{% endblock %}
+{% block hora %}<script src="{% static 'core/js/val_reloj.js' %}"></script>{% endblock %}
+{% block clima %}<script src="{% static 'core/js/clima.js' %}"></script>{% endblock %}
+{% block audio %}<script src="{% static 'core/js/audio.js' %}"></script>{% endblock %}

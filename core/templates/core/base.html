@@ -14,7 +14,8 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">  
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+    <link rel="icon" href="{% static 'core/img/dog_icon.svg' %}" type="image/x-icon">
 
     <title>{% block title %}{% endblock %} | Django Site</title>
 </head>
@@ -66,7 +67,7 @@
                 <li><a href="{% url 'galeria' %}"> Galeria </a></li>
                 <hr>
                 <audio id="audio1" autoplay controls loop>
-                  <source src="assets/audio/Audio_fondo.mp3" type="audio/mpeg">
+                  <source src="{% static 'core/audio/Audio_fondo.mp3' %}" type="audio/mpeg">
                 </audio>
   
               </ul>
@@ -132,5 +133,6 @@
     {% block modo_oscuro %}{% endblock %}
     {% block hora %}{% endblock %}
     {% block clima %}{% endblock %}
+    {% block audio %}{% endblock %}
 </body>
 </html>
