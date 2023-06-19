@@ -18,7 +18,7 @@
 
     <title>{% block title %}{% endblock %} | Django Site</title>
 </head>
-<body>
+<body onload="horaActual(); obtenerClima()" onclick="PlayAudio">
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -41,9 +41,96 @@
             </div>
         </div>
     </nav>
+
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+
+    <main>
+        {% block first_content %}{% endblock %}
+
+        {% block second_content %}{% endblock %}
+
+        {% block third_content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="footer-heading">Navegación</h3>
+              <ul class="footer-links list-unstyled">
+                <li><a href="{% url 'home' %}"> Home </a></li>
+                <li><a href="{% url 'contacto' %}"> Contacto </a></li>
+                <li><a href="{% url 'nosotros' %}"> Nosotros </a></li>
+                <li><a href="{% url 'galeria' %}"> Galeria </a></li>
+                <hr>
+                <audio id="audio1" autoplay controls loop>
+                  <source src="assets/audio/Audio_fondo.mp3" type="audio/mpeg">
+                </audio>
+  
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="card bg-transparent">
+                  <div class="card-header">
+                      <h4 class="footer-heading">Síguenos en nuestras redes sociales!!!</h4>
+                  </div>
+                  <div class="card-body-footer">
+                      <a class="footer-button footer-right-part" href="{% url 'contacto' %}">
+                          <button class="btn btn-outline-secondary" type="button"
+                              id="button-subscriptor">Contactanos</button>
+                      </a>
+                  </div>
+                  <div class="card-footer">
+                      <ul class="nav footer-bottom">
+                          <li>
+                              <a class="new-nav-link-bottom" href="http://www.instagram.com" target="">
+                                  <span class="fs-1">
+                                      <i class="fa-brands fa-facebook"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="new-nav-link-bottom" href="http://www.facebook.com" target="">
+                                  <span class="fs-1">
+                                      <i class="fa-brands fa-instagram"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="new-nav-link-bottom" href="http://www.twitter.com" target="">
+                                  <span class="fs-1">
+                                      <i class="fa-brands fa-twitter"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="new-nav-link-bottom" href="http://www.twitch.com" target="">
+                                  <span class="fs-1">
+                                      <i class="fa-brands fa-twitch"></i>
+                                  </span>
+                              </a>
+                          </li>
+                          <li>
+                              <a class="new-nav-link-bottom" href="http://www.tiktok.com" target="">
+                                  <span class="fs-1">
+                                      <i class="fa-brands fa-tiktok"></i>
+                                  </span>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
     {% block modo_oscuro %}{% endblock %}
+    {% block hora %}{% endblock %}
+    {% block clima %}{% endblock %}
 </body>
 </html>
