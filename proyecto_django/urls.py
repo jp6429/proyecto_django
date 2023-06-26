@@ -19,8 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 
 from core import views as core_views
+from crud import views as crud_views
 
 urlpatterns = [
     path('', include('core.urls')),
+    path('crud/', include('crud.urls')),
     path("admin/", admin.site.urls),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

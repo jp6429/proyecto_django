@@ -1,0 +1,133 @@
+{% extends 'crud/base.html' %}
+
+{% block title %}Mascotas{% endblock %}
+
+{% load static %}
+
+{% block main_content %}
+<div class="container my-2 p-5 text-white bg-dark text-center rounded">
+    <h1>Listado de Mascotas </h1>
+</div>
+
+<div class="container my-2">
+    <div class="row">
+        {% if 'OK' in request.GET %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>No Problem</strong> Mascota registrada exitosamente
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% if 'UPDATED' in request.GET %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Perfect</strong> Mascota actualizada exitosamente
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% if 'DELETED' in request.GET %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Not Bad</strong> Mascota eliminada exitosamente
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% if 'FAIL' in request.GET %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Oh No!</strong> No se encontro a la mascota buscada
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+        {% if 'NO_EXIST' in request.GET %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>I want to Exist</strong> La mascota buscada no existe
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container my-2">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo de Mascota</th>
+                    <th>Raza de Mascota</th>
+                    <th>Vacuna(s)</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in mascotas  %}
+                <tr>
+                    <td>{{v.idMascot}}</td>
+                    <td>{{v.name}}</td>
+                    <td>
+                        <a class="text-decoration-none" href="/crud/mascotas/mascotType/{{v.mascotType.id}}">{{v.mascotType}}</a>
+                    </td>
+                    <td>{{v.breed}}</td>
+                    <td>
+                        <a class="text-decoration-none" href="/crud/mascotas/vaccine/{{v.vaccine.id}}">{{v.vaccine}}</a>
+                    </td>
+                    <td>
+                        {% if v.image %}
+                        <img class="img-mascotas" src="{{v.image.url}}" alt="{{v.nombre}}">
+                        {% else %}
+                        <img class="img-mascotas" src="{% static 'crud/img/image_not_found.jpg' %}" alt="{{v.nombre}}">
+                        {% endif  %}
+                    </td>
+                    <td>
+                        
+                        <a class="btn btn-outline-primary" href="/crud/mascotas/detail/{{v.idMascot}}">
+                            <span class="fs-2 text-primary">
+                                <i class="fa-solid fa-eye"></i>
+                            </span>
+                        </a>                        
+                        
+                        <a class="btn btn-outline-warning" href="{% url 'mascotas-edit' mascotas_id=v.idMascot %}">
+                            <span class="fs-2 text-warning">
+                                <i class="fa-solid fa-pen"></i>
+                            </span>
+                        </a>
+                        <a class="btn btn-outline-danger modal-borrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-href="{% url 'mascotas-delete' mascotas_id=v.idMascot %}">
+                            <span class="fs-2 text-danger">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Mensajes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 class="modal-title">Estas seguro que deseas eliminar la mascota seleccionada?<br>Esta acción no se puede deshacer.</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No estoy seguro, vuelve atras</button>
+                <a class="btn btn-primary" id="confirmar-borrar" href="#">Estoy seguro, borrala</a>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $('.modal-borrar').on('click',function(){
+        const href = $(this).attr('data-href');
+        $('#confirmar-borrar').attr('href',href);
+    });
+</script>
+{% endblock %}

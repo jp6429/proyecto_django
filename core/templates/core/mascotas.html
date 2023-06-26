@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Mascotas{% endblock %}
+
+{% load static %}
+
+{% block header %}
+<h1 class="text-center">Mascotas para adoptar</h1>
+    <div class="row">
+      <div class="col md-2">
+          <div id="relojFecha">
+            <div class="relojFecha-tipo">
+                <div id="reloj"></div>
+                <div id="fecha"></div>
+            </div>
+          </div>
+      </div>
+      <div class="col md-2">
+          <div class="climaTemp">
+            <h2>Temperatura:</h2>
+            <p id="temperatura"></p>
+          </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block first_content %}
+<section class="container my-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for v in mascotas %}
+        <div class="col">
+            <div class="card h-100">
+                {% if v.image %}
+                <img src="{{v.image.url}}" class="card-img-top p-3" alt="{{v.name}}">
+                {% else %}
+                <img src="{% static 'crud/img/image_not_found.jpg' %}" class="card-img-top" alt="Image Not Found">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{v.name}}</h5>
+                    <p>
+                        <a class="card-link text-decoration-none" href="/mascotas/mascotType/{{v.mascotType.id}}">{{v.mascotType}}</a>
+                    </p>
+                    <p class="card-text">Raza de mascota: {{v.breed}}</p>
+                    <p>
+                        <a class="card-link text-decoration-none" href="/mascotas/vaccine/{{v.vaccine.id}}">{{v.vaccine}}</a>
+                    </p>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-primary" href="#">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block modo_oscuro %}<script src="{% static 'core/js/modo_oscuro.js' %}"></script>{% endblock %}
+{% block hora %}<script src="{% static 'core/js/val_reloj.js' %}"></script>{% endblock %}
+{% block clima %}<script src="{% static 'core/js/clima.js' %}"></script>{% endblock %}
+{% block audio %}<script src="{% static 'core/js/audio.js' %}"></script>{% endblock %}
