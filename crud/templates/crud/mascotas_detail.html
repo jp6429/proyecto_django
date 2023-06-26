@@ -1,0 +1,73 @@
+{% extends 'crud/base.html' %}
+
+{% block title %}New Mascotas{% endblock %}
+
+{% load static %}
+
+{% block main_content %}
+<div class="container my-4">
+    <div class="row mb-3">
+        <h1>SKU: {{mascota.idMascot}}</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 ">
+            {% if mascota.image %}
+            <img src="{{mascota.image.url}}" alt="{{mascota.name}}">
+            {% else %}
+            <img src="{% static 'crud/img/image_not_found.jpg' %}" alt="{{v.name}}">
+            {% endif  %}
+        </div>
+        <hr class="d-md-none">    
+        <div class="col-lg-8">
+            <ul class="list-unstyled">
+                <li class="mb-2">nombre: <p class="fw-bold">{{mascota.name}}</p></li>
+                <li class="mb-2">Tipo de mascota: <p class="fw-bold">{{mascota.mascotType}}</p></li>
+                <li class="mb-2">Raza de mascota: <p class="fw-bold">{{mascota.breed}}</p></li>
+                <li class="mb-2">Vacuna(s): <p class="fw-bold">${{mascota.vaccine}}</p></li>
+                <li class="mb-2 text-muted fst-italic">Registrado: <p class="fw-bold">{{mascota.created_at}}</p></li>
+                <li class="mb-2 text-muted fst-italic">Última actualización: <p class="fw-bold">{{mascota.updated_at}}</p></li>
+            </ul>
+            <div class="row">
+                <div class="col-2">
+                    <a class="btn btn-outline-primary" href="{% url 'mascotas-list' %}">Volver</a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-outline-secondary" href="{% url 'mascotas-edit' mascotas_id=videojuego.idMascot  %}">Editar</a>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-outline-danger modal-borrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-href="{% url 'mascotas-delete' mascotas_id=videojuego.idMascot %}">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Mensajes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 class="modal-title">¿Estas seguro que deseas eliminar la mascota seleccionada?<br>Esta acción no se puede deshacer.</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No estoy seguro, vuelve atras</button>
+                <a class="btn btn-primary" id="confirmar-borrar" href="#">Estoy seguro, borrala</a>
+            </div>
+        </div>
+    </div>
+</div>  
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $('.modal-borrar').on('click',function(){
+        const href = $(this).attr('data-href');
+        $('#confirmar-borrar').attr('href',href);
+    });
+</script>
+{% endblock %}

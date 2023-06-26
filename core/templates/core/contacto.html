@@ -3,3 +3,114 @@
 {% block title %}Contacto{% endblock %}
 
 {% load static %}
+
+{% block header %}
+<h1 class="text-center">Formulario de Contacto</h1>
+{% endblock %}
+
+{% block first_content %}
+<section class="container my-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Formulario de contacto</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="rut" class="form-label">Rut</label>
+                        <input type="text" class="form-control" onblur="validarFormulary()"id="idRut" name="rut" placeholder="Ejemplo: 11111111-1">
+                        <div id="rut-feedback" class="invalid-feedback"></div>
+                        <small id="alerta_rut" class="text-danger">Debe ingresar su rut</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" onkeyup="validarFormulary()" onblur="validarFormulary()" class="form-control" id="idNombre" name="nombre"
+                            placeholder="Ingrese su nombre">
+                        <small id="alerta_nombre_min" class="text-danger">Debes ingresar tu nombre</small>
+                        <small id="alerta_nombre_max" class="text-danger">El nombre excede el largo máximo permitido</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" onkeyup="validarFormulary()" onblur="validarFormulary()" class="form-control" id="idApellido" name="apellido"
+                            placeholder="Ingrese su apellido">
+                            <small id="alerta_apellido_min" class="text-danger">Debes ingresar tu apellido</small>
+                            <small id="alerta_apellido_max" class="text-danger">El apellido excede el largo máximo permitido</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" onkeyup="validarFormulary()" onblur="validarFormulary()" class="form-control" id="idEmail" name="email"
+                            placeholder="correo@correo.com">
+                        <small id="alerta_email" class="text-danger">Formato ingresado es incorrecto</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentarios</label>
+                        <br>
+                        <textarea  name="comentario" class="form-control" onkeyup="validarFormulary()" onblur="validarFormulary()" rows="10" cols="40" id="idComentario" name="comentario" placeholder="Escribe aqui tu comentario"></textarea>
+                        <span id="charCount" class="form-text">100 caracteres restantes</span>
+                        <script>
+                            const textarea2 = document.getElementById('idComentario');
+                            const maxLength2 = 100;
+
+                            textarea2.addEventListener('input', function() {
+                                if (textarea.value.length > maxLength2) {
+                                textarea2.value = textarea2.value.slice(0, maxLength2); // Recorta el texto al máximo de caracteres permitidos
+                                }
+                            });
+
+                            const textarea = document.getElementById('idComentario');
+                            const maxLength = 100; // Define el máximo número de caracteres permitidos
+                          
+                            textarea.addEventListener('input', function() {
+                              const remainingChars = maxLength - textarea.value.length;
+                              const counter = document.getElementById('charCount');
+                              counter.textContent = remainingChars + ' caracteres restantes';
+                            });
+                            </script>
+                    </div>                                
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-success" onclick="validarFormulary()" type="button">
+                                <i class="fa-regular fa-floppy-disk"></i>Guardar
+                            </button>   
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-success" id="agregar" onclick="validarFormulary()" type="button">
+                                <i class="font-awesome fa-eye-slash"></i>Agregar
+                            </button>   
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="button" class="btn btn-primary" onclick="validarRut()">
+                                <i class="font-awesome fa-eye-slash"></i>Validar Rut
+                            </button>   
+                        </div>
+
+                </div>
+            </div>    
+        </div>    
+    </div>    
+</section>
+
+{% endblock %}
+
+{% block second_content %}
+<div class="col-12" id="usuarios">
+    <table class="table table-striped" id="lista">
+        <tr>
+            <td>Rut</td>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Email</td>
+        </tr>
+    </table>
+</div>
+    <br>
+{% endblock %}
+
+{% block modo_oscuro %}<script src="{% static 'core/js/modo_oscuro.js' %}"></script>{% endblock %}
+{% block hora %}<script src="{% static 'core/js/val_reloj.js' %}"></script>{% endblock %}
+{% block clima %}<script src="{% static 'core/js/clima.js' %}"></script>{% endblock %}
+{% block audio %}<script src="{% static 'core/js/audio.js' %}"></script>{% endblock %}

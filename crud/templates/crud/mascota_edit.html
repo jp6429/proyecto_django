@@ -1,0 +1,61 @@
+{% extends 'crud/base.html' %}
+
+{% block title %}New Mascotas{% endblock %}
+
+{% load static %}
+
+{% block main_content %}
+<div class="container my-2 p-2 bg-dark text-white text-center rounded">
+    <h1>Formulario actualizacion de Mascotas</h1>
+</div>
+<div class="container my-2 p-5">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="idMascot" class="fw-bold">ID</label>
+            <div class="input-group">
+                {{form.idMascot}}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="name" class="fw-bold">Nombre</label>
+            <div class="input-group">
+                {{form.name}}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="mascotType" class="fw-bold">Tipo de Mascota</label>
+            <div class="input-group">
+                {{form.mascotType}}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="breed" class="fw-bold">Raza de Mascota</label>
+            <div class="input-group">
+                {{form.breed}}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="vaccine" class="fw-bold">Vacuna(s)</label>
+            <div class="input-group">
+                {{form.vaccine}}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="image" class="fw-bold">Imagen</label>
+            <div class="input-group">
+                {{form.image}}
+            </div>
+            {% if form.instance.image %}
+                <div class="row my-2">
+                    <img class="img-update" src="{{form.instance.image.url}}" alt="{{form.instance.name}}">
+                </div>
+            {% endif %}
+        </div>
+        <div class="text-center my-4">
+            <input type="submit" class="btn btn-primary" id="actualizar" value="Actualizar">
+            <a class="btn btn-success" href="{% url 'mascotas-list' %}">Volver</a>
+        </div>  
+    </form>
+</div>
+{% endblock %}
