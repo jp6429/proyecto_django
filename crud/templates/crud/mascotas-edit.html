@@ -1,12 +1,12 @@
 {% extends 'crud/base.html' %}
 
-{% block title %}New Mascotas{% endblock %}
+{% block title %}Actualizacion Mascotas{% endblock %}
 
 {% load static %}
 
 {% block main_content %}
 <div class="container my-2 p-2 bg-dark text-white text-center rounded">
-    <h1>Formulario registro nuevas mascotas</h1>
+    <h1>Formulario Actualizacion de Mascotas</h1>
 </div>
 <div class="container my-2 p-5">
     <form action="" method="post" enctype="multipart/form-data">
@@ -36,9 +36,9 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="vaccine" class="fw-bold">Vacuna(s) de Mascota</label>
+            <label for="gender" class="fw-bold">Genero de Mascota</label>
             <div class="input-group">
-                {{form.vaccine}}
+                {{form.gender}}
             </div>
         </div>
         <div class="form-group mb-3">
@@ -46,11 +46,16 @@
             <div class="input-group">
                 {{form.image}}
             </div>
+            {% if form.instance.image %}
+                <div class="row my-2">
+                    <img class="img-update" src="{{form.instance.image.url}}" alt="{{form.instance.name}}">
+                </div>
+            {% endif %}
         </div>
         <div class="text-center my-4">
-            <input type="submit" class="btn btn-primary" id="registrar" value="Registrar">
-            <input type="reset" class="btn btn-secondary" id="restablecer" value="Restablecer">
-            <a class="btn btn-success" href="{% url 'mascotas-list' %}">Volver</a>
+            <input type="submit" class="btn btn-primary" id="actualizar" value="Actualizar">
+            <input type="reset" class="btn btn-secondary m-2" id="limpiar" value="Restablecer">
+            <a class="btn btn-success m-2" href="{% url 'mascots' %}">Volver</a>
         </div>  
     </form>
 </div>

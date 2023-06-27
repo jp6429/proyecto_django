@@ -1,17 +1,17 @@
-from django.shortcuts import render, redirect, reverse  
+from django.shortcuts import render, HttpResponse, redirect, reverse  
 
 from .models import *
 from .forms import *
 
 # Create your views here.
 def root(request):
-    return redirect(mascotas_list)
+    return redirect('mascots/')
 
-def mascotas_list(request):
-    context = {'mascotas':Mascot.objects.all()}
+def mascots_list(request):
+    context = {'mascotas': Mascot.objects.all()}
     return render(request,'crud/mascotas.html',context)
 
-def mascotas_new(request):
+def mascots_new(request):
     if request.method == 'POST':
         form = MascotForm(request.POST, request.FILES)
         if form.is_valid():
@@ -19,68 +19,79 @@ def mascotas_new(request):
             name = form.cleaned_data.get('name')
             mascotType = form.cleaned_data.get('mascotType')
             breed = form.cleaned_data.get('breed')
-            vaccine = form.cleaned_data.get('vaccine')
+            gender = form.cleaned_data.get('gender')
             image = form.cleaned_data.get('image')
             obj = Mascot.objects.create(
                 idMascot = idMascot,
                 name = name,
                 mascotType = mascotType,
                 breed = breed,
-                vaccine = vaccine,
+                gender = gender,
                 image = image
             )
             obj.save()
-            return redirect(reverse('mascotas-list') + '?OK')
+            return redirect(reverse('mascots') + '?OK')
         else:
-            return redirect(reverse('mascotas-list') + '?FAIL')
+            return redirect(reverse('mascots') + '?FAIL')
     else:    
-        form = MascotForm()
-    return render(request,'crud/mascotas_new.html',{'form':form})
+        form = MascotForm
+    return render(request,'crud/mascotas-new.html',{'form':form})
 
-def mascotas_detail(request,mascota_id):
+def mascots_update(request,mascotas_id):
     try:
-        mascota = Mascot.objects.get(idMascot=mascota_id)
-        if mascota:
-            context = {'mascota': mascota }
-            return render(request,'crud/mascotas_detail.html',context)
-        else:
-            return redirect(reverse('mascotas-list') + '?NO_EXIST')
-    except:
-        return redirect(reverse('mascotas-list') + '?NO_EXIST')
-
-def mascotas_edit(request,mascota_id):
-    try:
-        mascota = Mascot.objects.get(idMascot=mascota_id)
-        form = MascotForm(instance=mascota)
+        mascotas = Mascot.objects.get(idMascot = mascotas_id)
+        form = MascotForm(instance=mascotas)
 
         if request.method == 'POST':
-            form = MascotForm(request.POST, request.FILES, instance=mascota)
+            form = MascotForm(request.POST, request.FILES, instance=mascotas)
             if form.is_valid():
                 form.save()
-                return redirect(reverse('mascota-list') + '?UPDATED')
+                return redirect(reverse('mascots') + '?UPDATED')
             else:
-                return redirect(reverse('mascota-edit') + mascota_id)
+                return redirect(reverse('mascots-edit') + mascotas_id) 
 
         context = {'form':form}
-        return render(request,'crud/mascotas_edit.html',context)
+        return render(request,'crud/mascotas-edit.html',context)
     except:
-        return redirect(reverse('mascotas-list') + '?NO_EXIST')
+        return redirect(reverse('mascotas') + '?NO_EXISTS')
 
-def mascotas_delete(request,mascota_id):
+def mascots_detail(request,mascotas_id):
     try:
-        mascota = Mascot.objects.get(idMascot=mascota_id)
-        mascota.delete()
-        return redirect(reverse('mascotas-list') + '?DELETED')
+        mascotas = Mascot.objects.get(idMascot=mascotas_id)
+        if mascotas:
+            context = {'mascotas': mascotas }
+            return render(request,'crud/mascotas-detail.html',context)
+        else:
+            return redirect(reverse('mascots') + '?NO_EXIST')
     except:
-        return redirect(reverse('mascotas-list') + '?FAIL')
+        return redirect(reverse('mascots') + '?NO_EXIST')
 
-def mascotas_by_mascotType(request, mascotType):
+def mascots_delete(request,mascotas_id):
+    try:
+        mascotas = Mascot.objects.get(idMascot=mascotas_id)
+        mascotas.delete()
+        return redirect(reverse('mascots') + '?DELETED')
+    except:
+        return redirect(reverse('mascots') + '?FAIL')
+
+def mascots_by_mascotType(request, mascotType):
     try:
         mascotas = Mascot.objects.filter(mascotType=mascotType)
         if mascotas:
             context = {'mascotas': mascotas }
             return render(request,'crud/mascotas.html',context)
         else:
-            return redirect(reverse('mascotas-list') + '?FAIL')
+            return redirect(reverse('mascots') + '?FAIL')
     except:
-        return redirect(reverse('mascotas-list') + '?FAIL')
+        return redirect(reverse('mascots') + '?FAIL')
+
+def mascots_by_gender(request, gender):
+    try:
+        mascotas = Mascot.objects.filter(gender=gender)
+        if mascotas:
+            context = {'mascotas':mascotas}
+            return render(request,'crud/mascotas.html',context)
+        else:
+            return redirect(reverse('mascots') + '?FAIL')
+    except:
+        return redirect(reverse('mascots') + '?FAIL')
