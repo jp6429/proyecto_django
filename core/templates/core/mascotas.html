@@ -36,14 +36,13 @@
                 <img src="{% static 'crud/img/image_not_found.jpg' %}" class="card-img-top" alt="Image Not Found">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">{{v.name}}</h5>
-                    <p>
-                        <a class="card-link text-decoration-none" href="/mascotas/mascotType/{{v.mascotType.id}}">{{v.mascotType}}</a>
+                    <p class="card-text fw-bold">
+                        <a class="text-decoration-none" href="/mascotas/mascotType/{{v.mascotType.id}}">{{v.mascotType}}</a>
                     </p>
-                    <p class="card-text">Raza de mascota: {{v.breed}}</p>
-                    <p>
-                        <a class="card-link text-decoration-none" href="/mascotas/vaccine/{{v.vaccine.id}}">{{v.vaccine}}</a>
-                    </p>
+                    <p class="card-text">SKU: {{v.idMascot}}</p>
+                    <p class="card-title fw-bold">{{v.name}}</p>
+                    <p class="card-text">Raza: {{v.breed}}</p>
+                    <p class="card-text">Genero: ${{v.gender }}</p>
                 </div>
                 <div class="card-footer text-center">
                     <a class="btn btn-primary" href="#">

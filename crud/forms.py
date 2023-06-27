@@ -10,7 +10,7 @@ class MascotForm(ModelForm):
             'name',
             'mascotType',
             'breed',
-            'vaccine',
+            'gender',
             'image'
         ]
         labels = {
@@ -18,7 +18,7 @@ class MascotForm(ModelForm):
             'name':'Nombre',
             'mascotType':'Tipo de Mascota',
             'breed':'Raza de Mascota',
-            'vaccine':'Vacuna(s)',
+            'gender':'Genero de Mascota',
             'image':'Imagen'
         }
         widgets = {
@@ -26,12 +26,12 @@ class MascotForm(ModelForm):
             'name':forms.TextInput(attrs={'class':'form-control'}),
             'mascotType':forms.Select(attrs={'class':'form-control'}),
             'breed':forms.TextInput(attrs={'class':'form-control'}),
-            'vaccine':forms.CheckboxSelectMultiple(),
+            'gender':forms.Select(attrs={'class':'form-control'}),
             'image':forms.FileInput(attrs={'class':'form-control'})
         }
 
 class MascotTypeForm(ModelForm):
     pass
 
-class VaccineForm(ModelForm):
+class GenderForm(ModelForm):
     pass

@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import MascotType, Mascot, Vaccine
+from .models import *
 
 # Register your models here.
-class VaccineAdmin(admin.ModelAdmin):
+class GenderAdmin(admin.ModelAdmin):
     readonly_fields = ('id','created_at','updated_at')
-    list_display = ('id','vaccine')
-    ordering = ('vaccine',)
+    list_display = ('id','gender')
+    ordering = ('gender',)
 
 class MascotTypeAdmin(admin.ModelAdmin):
     readonly_fields = ('id','created_at','updated_at')
@@ -14,9 +14,9 @@ class MascotTypeAdmin(admin.ModelAdmin):
 
 class MascotAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at','updated_at')
-    list_display = ('idMascot','name','mascotType','breed')
+    list_display = ('idMascot','name','mascotType','breed','gender')
     ordering = ('name',)
 
+admin.site.register(Gender,GenderAdmin)
 admin.site.register(MascotType,MascotTypeAdmin)
 admin.site.register(Mascot,MascotAdmin)
-admin.site.register(Vaccine,VaccineAdmin)
