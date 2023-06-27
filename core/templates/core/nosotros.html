@@ -3,3 +3,59 @@
 {% block title %}Nosotros{% endblock %}
 
 {% load static %}
+{% block links %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+{% endblock %}
+{% block header %}
+<header>
+  <div class="tituloNosotros" id="tituloNosotros">
+    <h1>Aqui podras encontrar nuestro local fisico.</h1>
+  </div>
+</header>
+<hr>
+{% endblock %}
+
+{% block first_content %}
+
+<body onload="horaActual(); obtenerClima()" onclick="PlayAudio">
+  <main>
+    <section class="section">
+      <article class="article">
+        <div class="row">
+          <div class="text_nosotros">
+            <p>En nuestro establecimiento podras venir a recoger al nuevo integrante de tu familia...</p>
+            <p>Suerte.</p>
+          </div>
+          <div class="col md-2">
+            <div id="relojFecha">
+              <div class="relojFecha-tipo">
+                <div id="reloj"></div>
+                <div id="fecha"></div>
+              </div>
+            </div>
+            <div class="climaTemp">
+              <h2>Temperatura:</h2>
+              <p id="temperatura"></p>
+            </div>
+          </div>
+        </div>
+        <div class="map" id="map"></div>
+      </article>
+      <article class="article-alt">
+        <p>Desarrolladores : Kevin Espinoza, Francisco Negrete y Juan Pablo Sepulveda</p>
+      </article>
+    </section>
+  </main>
+</body>
+{% endblock %}
+
+{% block mapa %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="{% static 'core/js/mapa.js' %}"></script>
+{% endblock %}
+{% block modo_oscuro %}<script src="{% static 'core/js/modo_oscuro.js' %}"></script>{% endblock %}
+{% block hora %}<script src="{% static 'core/js/val_reloj.js' %}"></script>{% endblock %}
+{% block clima %}<script src="{% static 'core/js/clima.js' %}"></script>{% endblock %}
+{% block audio %}<script src="{% static 'core/js/audio.js' %}"></script>{% endblock %}
