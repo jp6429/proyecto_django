@@ -35,3 +35,29 @@ class MascotTypeForm(ModelForm):
 
 class GenderForm(ModelForm):
     pass
+
+class ContactForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = [
+            'rut',
+            'nombre',
+            'apellido',
+            'email',
+            'comentario'
+        ]
+        labels = {
+            'rut':'Rut de Contacto',
+            'nombre':'Nombre de Contacto',
+            'apellido':'Apellido de Contacto',
+            'email':'Email de Contacto',
+            'comentario':'Comentario'
+        }
+        widgets = {
+            'rut':forms.TextInput(attrs={'class':'form-control'}),
+            'nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'apellido':forms.TextInput(attrs={'class':'form-control'}),
+            'email':forms.TextInput(attrs={'class':'form-control'}),
+            'comentario':forms.Textarea(attrs={'class':'form-control'}),
+        }

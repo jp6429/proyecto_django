@@ -10,4 +10,5 @@ urlpatterns = [
     path('mascots/new/', mascots_new, name="mascotas-new"),
     path('mascots/mascotType/<mascotType>', mascots_by_mascotType, name="mascotas-mascotType"),
     path('mascots/gender/<gender>', mascots_by_gender, name="mascotas-gender"),
+    path('contact/', contact, name='contact'),
 ]
