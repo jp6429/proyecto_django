@@ -31,10 +31,36 @@ class MascotForm(ModelForm):
         }
 
 class MascotTypeForm(ModelForm):
-    pass
+    class Meta:
+        model = MascotType
+        fields = [
+            'id',
+            'mascotType'
+        ]
+        labels = {
+            'id':'ID',
+            'mascotType':'Tipo de Mascota'
+        }
+        widgets = {
+            'id':forms.TextInput(attrs={'class':'form-control'}),
+            'mascotType':forms.Select(attrs={'class':'form-control'})
+        }
 
 class GenderForm(ModelForm):
-    pass
+    class Meta:
+        model = Gender
+        fields = [
+            'id',
+            'gender'
+        ]
+        labels = {
+            'id':'ID',
+            'gender':'Raza de Mascota'
+        }
+        widgets = {
+            'id':forms.TextInput(attrs={'class':'form-control'}),
+            'gender':forms.Select(attrs={'class':'form-control'})
+        }
 
 class ContactForm(forms.ModelForm):
 
