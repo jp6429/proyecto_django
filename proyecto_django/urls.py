@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+from core import views as core_views
+from crud import views as crud_views
+
 urlpatterns = [
     path('', include('core.urls')),
+    path('api/',include('api.urls')),
     path('crud/', include('crud.urls')),
     path("admin/", admin.site.urls),
 ]

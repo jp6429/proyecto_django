@@ -44,3 +44,18 @@ class Mascot(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+class Contact(models.Model):
+    rut = models.CharField(max_length=12)
+    nombre = models.CharField(max_length=30)
+    apellido = models.CharField(max_length=30)
+    email = models.EmailField()
+    comentario = models.TextField(max_length=120)
+
+    class Meta:
+        verbose_name = 'contacto'
+        verbose_name_plural = 'contactos'
+        ordering = ['nombre','apellido']
+
+    def __str__(self):
+        return self.nombre

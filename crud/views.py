@@ -95,3 +95,18 @@ def mascots_by_gender(request, gender):
             return redirect(reverse('mascots') + '?FAIL')
     except:
         return redirect(reverse('mascots') + '?FAIL')
+
+def contact(request):
+    data = {
+        'form' : ContactForm()
+    }
+
+    if request.method == 'POST':
+        formulario = ContactForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Contacto Guardado."
+        else:
+            data["form"] = formulario
+
+    return render(request,'core/contacto.html', data)

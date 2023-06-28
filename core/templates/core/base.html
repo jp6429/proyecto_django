@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
     <link rel="icon" href="{% static 'core/img/dog_icon.svg' %}" type="image/x-icon">
 
+    {% block links %}{% endblock %}
+    
     <title>{% block title %}{% endblock %} | Django Site</title>
 </head>
 <body onload="horaActual(); obtenerClima()" onclick="PlayAudio">
@@ -135,6 +137,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
 
+    {% block mapa %}{% endblock %}
     {% block modo_oscuro %}{% endblock %}
     {% block hora %}{% endblock %}
     {% block clima %}{% endblock %}

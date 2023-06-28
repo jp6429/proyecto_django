@@ -265,7 +265,7 @@ a:hover{
     background-color: var(--dark-blue);
 }
 
-#map{
+.map{
     height: 500px;
     width: 75%;
     border-radius: 10px;
