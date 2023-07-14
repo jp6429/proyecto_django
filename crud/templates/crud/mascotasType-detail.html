@@ -14,10 +14,10 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <ul class="list-unstyled">
-                        <li class="mb-2">Id de tipo de mascota: <p class="fw-bold">{{mascotasType.id}}</p></li>
-                        <li class="mb-2">Tipo de mascota: <p class="fw-bold">{{mascotasType.mascotType}}</p></li>
-                        <li class="mb-2 text-muted fst-italic">Registrado: <p class="fw-bold">{{mascotasType.created_at}}</p></li>
-                        <li class="mb-2 text-muted fst-italic">Última actualización: <p class="fw-bold">{{mascotasType.updated_at}}</p></li>
+                        <li class="mb-2">Id de tipo de mascota: <p class="fw-bold">{{mascotasTipo.id}}</p></li>
+                        <li class="mb-2">Tipo de mascota: <p class="fw-bold">{{mascotasTipo.mascotType}}</p></li>
+                        <li class="mb-2 text-muted fst-italic">Registrado: <p class="fw-bold">{{mascotasTipo.created_at}}</p></li>
+                        <li class="mb-2 text-muted fst-italic">Última actualización: <p class="fw-bold">{{mascotasTipo.updated_at}}</p></li>
                     </ul>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <a class="btn btn-outline-primary" href="{% url 'mascotasType' %}">Volver</a>
         </div>
         <div class="col-2">
-            <a class="btn btn-outline-secondary" href="{% url 'mascotasTipo-edit' mascotasTipo_id=mascotasTipo.id %}">Editar</a>
+            <a class="btn btn-outline-secondary" href="{% url 'mascotasType-edit' mascotasTipo_id=mascotasTipo.id %}">Editar</a>
         </div>
         <div class="col-2">
             <a class="btn btn-outline-danger modal-borrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-href="{% url 'mascotasType-delete' mascotasTipo_id=mascotasTipo.id %}">Eliminar</a>

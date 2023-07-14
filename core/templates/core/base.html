@@ -33,14 +33,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    {% if request.session.usuario.rol == 'ADMIN' %}
+                        <a class="nav-link " href="/admin">Admin</a>
+                    {% endif %}
+                    {% if request.session.usuario.rol == 'ADMIN' or request.session.usuario.rol == 'USER' %}
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                        <a class="nav-link" href="{% url 'mascotas' %}">Mascotas</a>
+                    {% endif %}
                     <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
-                    <a class="nav-link" href="{% url 'mascotas' %}">Mascotas</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     
                     <button class="darkModeSwitch" id="switch">
                         <span><i class="fa-solid fa-sun" style="color: #000;"></i></span>   
                         <span><i class="fa-solid fa-moon" style="color: #ffbe0b;"></i></span>
                     </button>
+
                 </div>
             </div>
         </div>
@@ -65,9 +73,11 @@
               <h3 class="footer-heading">Navegación</h3>
               <ul class="footer-links list-unstyled">
                 <li><a href="{% url 'home' %}"> Home </a></li>
-                <li><a href="{% url 'contacto' %}"> Contacto </a></li>
+                {% if request.session.usuario.rol == 'ADMIN' or request.session.usuario.rol == 'USER' %}
+                        <li><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+                        <li><a class="nav-link" href="{% url 'mascotas' %}">Mascotas</a></li>
+                {% endif %}
                 <li><a href="{% url 'nosotros' %}"> Nosotros </a></li>
-                <li><a href="{% url 'mascotas' %}"> Mascotas </a></li>
                 <hr>
                 <audio id="audio1" autoplay controls loop>
                   <source src="{% static 'core/audio/Audio_fondo.mp3' %}" type="audio/mpeg">

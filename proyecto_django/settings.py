@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crud',
     'api',
     'rest_framework',
+    'login_app',
 ]
 
 MIDDLEWARE = [

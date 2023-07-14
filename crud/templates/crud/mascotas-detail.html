@@ -1,6 +1,6 @@
 {% extends 'crud/base.html' %}
 
-{% block title %}{{mascotas.idMascot}}{% endblock %}
+{% block title %}Detalles Mascotas{% endblock %}
 
 {% load static %}
 
@@ -12,9 +12,9 @@
     <div class="row">
         <div class="col-md-6 ">
             {% if mascotas.image %}
-            <img class="img-detail" src="{{mascotas.image.url}}" alt="{{mascotas.name}}" height="400px" width="550px">
+            <img class="img-detail" src="{{mascotas.image.url}}" alt="{{mascotas.name}}">
             {% else %}
-            <img class="img-detail" src="{% static 'crud/img/image_not_found.jpg' %}" alt="INF" height="300px" width="300px">
+            <img class="img-detail" src="{% static 'crud/img/image_not_found.jpg' %}" alt="INF">
             {% endif %}
         </div>    
         <div class="col-md-6">
@@ -37,7 +37,7 @@
             <a class="btn btn-outline-primary" href="{% url 'mascots' %}">Volver</a>
         </div>
         <div class="col-2">
-            <a class="btn btn-outline-secondary" href="{% url 'mascotas-edit' mascotas_id=mascotas.idMascot  %}">Editar</a>
+            <a class="btn btn-outline-secondary" href="{% url 'mascots-edit' mascotas_id=mascotas.idMascot  %}">Editar</a>
         </div>
         <div class="col-2">
             <a class="btn btn-outline-danger modal-borrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-href="{% url 'mascots-delete' mascotas_id=mascotas.idMascot %}">Eliminar</a>

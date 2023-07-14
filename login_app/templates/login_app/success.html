@@ -1,0 +1,23 @@
+{% extends "login_app/base.html"%}
+
+{% block title %}Bienvenido {{request.session.usuario.first_name}} {{request.session.usuario.last_name}}{% endblock %}
+
+
+{% block main_content %}
+
+{% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container">
+        <h1>Bienvenido {{request.session.usuario.first_name}} {{request.session.usuario.last_name}}</h1>
+        <article class="article">
+            <h3>Ahora puede acceder a todo el contenido!!!</h3>
+        </article>
+    </div>
+
+{% endblock %}

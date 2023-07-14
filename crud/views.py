@@ -5,13 +5,28 @@ from .forms import *
 
 # Create your views here.
 def root(request):
+    if 'usuario' not in request.session:
+        return redirect("/")
+
+    #if request.session.usuario.rol == 'ADMIN':
     return redirect('mascots/')
 
 def mascots_list(request):
+    if 'usuario' not in request.session:
+        return redirect("/")
+    
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+
     context = {'mascotas': Mascot.objects.all()}
     return render(request,'crud/mascotas.html',context)
 
 def mascots_new(request):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     if request.method == 'POST':
         form = MascotForm(request.POST, request.FILES)
         if form.is_valid():
@@ -38,6 +53,11 @@ def mascots_new(request):
     return render(request,'crud/mascotas-new.html',{'form':form})
 
 def mascots_update(request,mascotas_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotas = Mascot.objects.get(idMascot = mascotas_id)
         form = MascotForm(instance=mascotas)
@@ -53,9 +73,14 @@ def mascots_update(request,mascotas_id):
         context = {'form':form}
         return render(request,'crud/mascotas-edit.html',context)
     except:
-        return redirect(reverse('mascotas') + '?NO_EXISTS')
+        return redirect(reverse('mascots') + '?NO_EXISTS')
 
 def mascots_detail(request,mascotas_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotas = Mascot.objects.get(idMascot=mascotas_id)
         if mascotas:
@@ -67,6 +92,11 @@ def mascots_detail(request,mascotas_id):
         return redirect(reverse('mascots') + '?NO_EXIST')
 
 def mascots_delete(request,mascotas_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotas = Mascot.objects.get(idMascot=mascotas_id)
         mascotas.delete()
@@ -75,6 +105,11 @@ def mascots_delete(request,mascotas_id):
         return redirect(reverse('mascots') + '?FAIL')
 
 def mascots_by_mascotType(request, mascotType):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotas = Mascot.objects.filter(mascotType=mascotType)
         if mascotas:
@@ -86,6 +121,11 @@ def mascots_by_mascotType(request, mascotType):
         return redirect(reverse('mascots') + '?FAIL')
 
 def mascots_by_gender(request, gender):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotas = Mascot.objects.filter(gender=gender)
         if mascotas:
@@ -112,10 +152,20 @@ def contact(request):
     return render(request,'core/contacto.html', data)
 
 def mascotsType_list(request):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     context = {'mascotasTipo': MascotType.objects.all()}
     return render(request,'crud/mascotasType.html',context)
 
 def mascotsType_new(request):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     if request.method == 'POST':
         form = MascotTypeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -132,6 +182,11 @@ def mascotsType_new(request):
     return render(request,'crud/mascotasType-new.html',{'form':form})
 
 def mascotsType_update(request,mascotasTipo_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotasTipo = MascotType.objects.get(id = mascotasTipo_id)
         form = MascotTypeForm(instance=mascotasTipo)
@@ -150,8 +205,13 @@ def mascotsType_update(request,mascotasTipo_id):
         return redirect(reverse('mascotasTipo') + '?NO_EXISTS')
 
 def mascotsType_detail(request,mascotasTipo_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
-        mascotasTipo = MascotType.objects.get(id=mascotasTipo_id)
+        mascotasTipo = MascotType.objects.get(id = mascotasTipo_id)
         if mascotasTipo:
             context = {'mascotasTipo': mascotasTipo }
             return render(request,'crud/mascotasType-detail.html',context)
@@ -161,6 +221,11 @@ def mascotsType_detail(request,mascotasTipo_id):
         return redirect(reverse('mascotasType') + '?NO_EXIST')
 
 def mascotsType_delete(request,mascotasTipo_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         mascotasTipo = MascotType.objects.get(id=mascotasTipo_id)
         mascotasTipo.delete()
@@ -169,10 +234,20 @@ def mascotsType_delete(request,mascotasTipo_id):
         return redirect(reverse('mascotasType') + '?FAIL')
 
 def gender_list(request):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     context = {'genero': Gender.objects.all()}
     return render(request,'crud/genero.html',context)
 
 def gender_new(request):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     if request.method == 'POST':
         form = GenderForm(request.POST, request.FILES)
         if form.is_valid():
@@ -189,6 +264,11 @@ def gender_new(request):
     return render(request,'crud/genero-new.html',{'form':form})
 
 def gender_update(request,genero_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         genero = Gender.objects.get(id = genero_id)
         form = GenderForm(instance=genero)
@@ -207,6 +287,11 @@ def gender_update(request,genero_id):
         return redirect(reverse('genero') + '?NO_EXISTS')
 
 def gender_detail(request,genero_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         genero = Gender.objects.get(id=genero_id)
         if genero:
@@ -218,6 +303,11 @@ def gender_detail(request,genero_id):
         return redirect(reverse('genero') + '?NO_EXIST')
 
 def gender_delete(request,genero_id):
+    #if 'ADMIN' not in request.session.usuario.rol:
+    #    return redirect("/")
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     try:
         genero = MascotType.objects.get(id=genero_id)
         genero.delete()

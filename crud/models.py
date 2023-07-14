@@ -9,7 +9,7 @@ class Gender(models.Model):
     class Meta:
         verbose_name = 'genero'
         verbose_name_plural = 'generos'
-        ordering = ['gender']
+        ordering = ['id']
 
     def __str__(self) -> str:
         return self.gender
@@ -22,7 +22,7 @@ class MascotType(models.Model):
     class Meta:
         verbose_name = 'tipo de mascota'
         verbose_name_plural = 'tipo de mascotas'
-        ordering = ['mascotType']
+        ordering = ['id']
 
     def __str__(self) -> str:
         return self.mascotType

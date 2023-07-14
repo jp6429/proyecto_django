@@ -12,9 +12,15 @@ def nosotros(request):
     return render(request,'core/nosotros.html')
 
 def contacto(request):
+    if 'usuario' not in request.session:
+        return redirect("/")
+
     return render(request,'core/contacto.html')
 
 def mascotas(request):
+    if 'usuario' not in request.session:
+        return redirect("/")
+        
     context = {'mascotas':Mascot.objects.all(),'mascotType': MascotType.objects.all()}
     return render(request,'core/mascotas.html',context)
 
