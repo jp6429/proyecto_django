@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('api/',include('api.urls')),
     path('crud/', include('crud.urls')),
+    path('login_app/', include('login_app.urls')),
     path("admin/", admin.site.urls),
 ]
 
